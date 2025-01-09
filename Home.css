@@ -168,28 +168,26 @@ body {
 
 
 .card-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+    padding: 10px;
     max-width: 1200px;
     margin: auto;
     margin-bottom: 100px;
-    /* flex-wrap: wrap; */
 }
 
 .card {
     display: flex;
     align-items: center;
-    background-color: rgb(241, 234, 234);
+    background-color: #f3f3f3;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
     padding: 8px 20px;
     transition: transform 0.3s ease;
 }
+
 
 .card:hover {
     transform: scale(1.05);
@@ -242,6 +240,7 @@ footer {
     color: #fff;
     padding: 180px;
     padding-top: 100px;
+    padding-bottom: 100px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
 
@@ -286,10 +285,11 @@ footer {
 .footer-logos {
     display: flex;
     justify-content: left;
-    gap: 100px;
+    gap: 80px;
     margin-top: 40px;
     padding: 20px;
     align-items: center;
+    
 
 }
 .lang-location button{
@@ -306,6 +306,31 @@ footer {
      background-color: #fff;
      color: black;
 }
+.app-stores {
+    margin-top: 80px ;
+    display: flex;
+    gap: 10px; 
+    margin-bottom: 80px;
+}
+.app-stores img{
+    width: 150px;
+    border-radius: 8px;
+}
+.copyright{
+    color: #afafaf;
+    font-size: 14px;
+}
+.privacy{
+    color: #afafaf;
+    display: flex;
+    gap: 30px;
+    font-size: 12px;
+}
+.footer-lastline{
+    display: flex;
+    justify-content: space-between
+}
+    
 
 
 
@@ -383,6 +408,10 @@ footer {
         width: 500px !important;
         margin-right: 0%;
     }
+    .footer-logos{
+        gap: 40px;
+    }
+    
 }
 
 /* Mobile (Screens 480px and up) */
@@ -498,8 +527,8 @@ footer {
     }
 
     .logo {
-        font-size: 24px;
-        margin-left: 5%;
+        font-size: 30px;
+        /* margin-left: 5%; */
     }
 
     .auth-links {
@@ -539,6 +568,17 @@ footer {
     }
     footer{
         padding-left: 40px;
+        padding-right: 40px;
+    }
+    .app-stores{
+        max-width: 120px;
+    }
+    .footer-lastline{
+        max-width: 30px;
+        gap: 60px;
+    }
+    .privacy{
+        display: block;
     }
 
 }
