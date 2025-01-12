@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Keyur</title>
     <link rel="stylesheet" href="Home.css" />
+    <script src="script.js"></script>
   </head>
 
   <body>
@@ -40,8 +41,32 @@
           <div class="ride-text">Courier</div>
         </div>
         <div class="location-section">
-          <input type="text" placeholder="Pickup Location" />
-          <input type="text" placeholder="Dropoff Location" />
+          <input
+            id="pickupLocation"
+            type="text"
+            placeholder="Pickup Location"
+            oninput='getSuggestion("pickupLocation", "pickupsuggestion")'
+          />
+          <div id="pickupsuggestion" class="suggestions-container">
+            <select
+              id="pickup-suggestions-select"
+              onchange="selectSuggestion('pickupLocation', 'pickupsuggestion')"
+            ></select>
+          </div>
+
+          <input
+            id="dropLocation"
+            type="text"
+            placeholder="Dropoff Location"
+            oninput='getSuggestion("dropLocation", "dropsuggestion")'
+          />
+          <div id="dropsuggestion" class="suggestions-container">
+            <select
+              id="drop-suggestions-select"
+              onchange="selectSuggestion('dropLocation', 'dropsuggestion')"
+            ></select>
+          </div>
+
           <div id="dt">
             <input id="date" type="date" placeholder="Date" />
             <input id="time" type="time" placeholder="Time" />
@@ -198,8 +223,6 @@
         />
       </div>
       <div class="footer-lastline">
-
-
         <div>
           <p class="copyright">© 2025 Uber Technologies Inc.</p>
         </div>
