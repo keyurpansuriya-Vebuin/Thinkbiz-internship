@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Location Manager</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    input, button {
+      margin: 5px;
+      padding: 10px;
+    }
+    ul {
+      list-style-type: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin Location Manager</h1>
+
+  <h2>All Locations</h2>
+  <ul id="locationList"></ul>
+
+  <h3>Add Location</h3>
+  <input type="text" id="newLocation" placeholder="Enter new location" />
+  <button onclick="addLocation()">Add Location</button>
+
+  <h3>Edit Location</h3>
+  <input type="text" id="oldLocation" placeholder="Old location" />
+  <input type="text" id="newLocationEdit" placeholder="New location" />
+  <button onclick="editLocation()">Edit Location</button>
+
+  <h3>Remove Location</h3>
+  <input type="text" id="removeLocation" placeholder="Location to remove" />
+  <button onclick="removeLocation()">Remove Location</button>
+
+  <script>
+    // Function to fetch locations from localStorage
+    function fetchLocations() {
+      const locations = JSON.parse(localStorage.getItem('locations')) || [];
+      const locationList = document.getElementById('locationList');
+      locationList.innerHTML = '';
+      locations.forEach(location => {
+        const li = document.createElement('li');
+        li.textContent = location;
+        locationList.appendChild(li);
+      });
+    }
+
+    // Add a new location to localStorage
+    function addLocation() {
+      const location = document.getElementById('newLocation').value;
+      if (!location) {
+        alert('Please enter a location');
+        return;
+      }
+      
+      const locations = JSON.parse(localStorage.getItem('locations')) || [];
+      locations.push(location);
+      localStorage.setItem('locations', JSON.stringify(locations));
+      
+      fetchLocations();
+      document.getElementById('newLocation').value = ''; // Clear the input
+    }
+
+    // Edit an existing location in localStorage
+    function editLocation() {
+      const oldLocation = document.getElementById('oldLocation').value;
+      const newLocation = document.getElementById('newLocationEdit').value;
+      
+      if (!oldLocation || !newLocation) {
+        alert('Please enter both old and new location');
+        return;
+      }
+      
+      const locations = JSON.parse(localStorage.getItem('locations')) || [];
+      const index = locations.indexOf(oldLocation);
+      
+      if (index === -1) {
+        alert('Location not found');
+        return;
+      }
+      
+      locations[index] = newLocation;
+      localStorage.setItem('locations', JSON.stringify(locations));
+      
+      fetchLocations();
+      document.getElementById('oldLocation').value = ''; // Clear the input
+      document.getElementById('newLocationEdit').value = ''; // Clear the input
+    }
+
+    // Remove a location from localStorage
+    function removeLocation() {
+      const location = document.getElementById('removeLocation').value;
+      
+      if (!location) {
+        alert('Please enter a location to remove');
+        return;
+      }
+      
+      const locations = JSON.parse(localStorage.getItem('locations')) || [];
+      const index = locations.indexOf(location);
+      
+      if (index === -1) {
+        alert('Location not found');
+        return;
+      }
+      
+      locations.splice(index, 1); // Remove the location
+      localStorage.setItem('locations', JSON.stringify(locations));
+      
+      fetchLocations();
+      document.getElementById('removeLocation').value = ''; // Clear the input
+    }
+
+    // Initialize the locations when the page loads
+    window.onload = fetchLocations;
+  </script>
+</body>
+</html>
